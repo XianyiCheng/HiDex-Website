@@ -210,22 +210,23 @@
               It solves a diverse set of manipulation tasks that require dexterity, both intrinsic (using the fingers)
               and extrinsic (also using the environment), mostly in seconds.
               Second, our framework allows the incorporation of expert knowledge and customizable setups in task
-              mechanics and models. It is flexible to encode expert knowledge into the search through MCTS action policies, value estimations,
-              and rewards. 
-              Hence, it could provide a generalizable solution for various manipulation tasks. 
+              mechanics and models. It is flexible to encode expert knowledge into the search through MCTS action
+              policies, value estimations,
+              and rewards.
+              Hence, it could provide a generalizable solution for various manipulation tasks.
             </p>
             <p>
-              We instantiate this framework on manipulation with extrinsic dexterity and in-hand manipulation. 
+              We instantiate this framework on manipulation with extrinsic dexterity and in-hand manipulation.
               Example tasks include <i>pick up a card</i>, <i>book-out-of-bookshelf</i>, <i>peg-out-of-hole</i>,
               <i>block flipping</i>, <i>occluded grasp</i>, <i>upward peg-in-hole</i>, <i>sideway
-              peg-in-hole</i>, <i>planar reorientation</i>, <i>planar block passing</i>, and <i>in-hand
-              reorientation</i>. We also demonstrate some of them on two robot platforms. 
+                peg-in-hole</i>, <i>planar reorientation</i>, <i>planar block passing</i>, and <i>in-hand
+                reorientation</i>. We also demonstrate some of them on two robot platforms.
               As future work, we envision this framework to be extended
               towards general manipulation planning that incorporates global reasoning, mechanics, learning, and
               optimization.
             </p>
             <p>
-              It requires minor modifications to accommodate different scenarios and robots. 
+              It requires minor modifications to accommodate different scenarios and robots.
               In our code, setting up new scenarios and adjusting search parameters only require modification of one <a
                 href="https://github.com/XianyiCheng/HiDex/blob/main/data/template_task/setup.yaml">setup.yaml</a> file.
             </p>
@@ -242,10 +243,10 @@
       <!-- Method. -->
       <div class="columns is-centered has-text-centered">
         <div class="column is-full-width">
-          <h2 class="title is-3">HiDex</h2>
+          <h2 class="title is-3">HiDex Method Overview</h2>
           <div class="content has-text-justified">
             <p>
-              
+
             </p>
             <br>
           </div>
@@ -272,9 +273,7 @@
 
           <div class="columns is-centered">
             <div class="column content">
-              <br>
-              <br>
-              <br>
+              <!-- <br> -->
               <p>
                 An overview of our framework, with an example of picking up a card. In the example, the robot pulls the
                 card the edge of the table and then grasps
@@ -286,11 +285,17 @@
               </p>
               <p>
                 Level 1 plans object trajectories, interleaving searches over discrete contact modes
-                (&#9645 nodes) and continuous object poses (&#9675 nodes).
+                (&#9645 nodes) and continuous object poses (&#9675 nodes). 
+                Level 1 is based on MCTS, and
+                we employ Rapidly-exploring random tree (RRT) as the MCTS rollout to enhance the exploration of object
+                configuration space.
               </p>
               <p>
                 An object trajectory is passed to Level 2 (&#8681) to plan robot contact sequences on the
-                object surface (&#x25CC nodes).
+                object surface (&#x25CC nodes). 
+                Level 2 is also based on MCTS. Our repsentation allows planning of robot contact transitions. 
+                Compared to explicitly planning robot contacts for each timestep, 
+                planning transitions largely increases the search efficiency.   
               </p>
               <p>
                 The full trajectory of object motions and robot contacts is
@@ -346,7 +351,7 @@
         <div class="column is-8">
           <div class="content">
             <p>
-              The website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+              The website template is from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
             </p>
           </div>
         </div>
